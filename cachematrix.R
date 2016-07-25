@@ -1,15 +1,20 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
-
-makeCacheMatrix <- function(x = matrix()) {
-
+##Create CacheMartix
+cachemean <- function(x, ...) {
+  y <- x$getmean()
+  if(!is.null(y)) {
+    message("getting cached data")
+    return(m)
+  }
+  data <- x$get()
+  y <- mean(data, ...)
+  x$setmean(y)
+  y
 }
+##Return Inverse Result
+solve(y)
 
 
-## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-}
+## Create square Matrix equal 
+x= matrix( c(1,2,3,4), nrow=2 ) *2 
+## Execute and return the inverse result
+solve(x) 

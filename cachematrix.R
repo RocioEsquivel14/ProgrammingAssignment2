@@ -1,28 +1,28 @@
-##Create MakeCacheMartix
-makeCacheMatrix<- function(i = numeric()) {
+##Create MakeCacheMatrix
+makeCacheMatrix<- function(x=matrix()) {
         m <- NULL
         set <- function(y) {
-                i <<- y
+                x <<- y
                 m <<- NULL
         }
-        get <- function() i
-        setmean <- function(mean) m <<- mean
-        getmean <- function() m
+        get <- function() x
+        setcache <- function(solve) m <<- solve
+        getcache <- function() m
         list(set = set, get = get,
-             setmean = setmean,
-             getmean = getmean)
+             setcache = setcache,
+             getcache = getcache)
 }
 
 
 ## CacheSolve
-cacheSolve <- function(i, ...) {
-        m <- x$getmean()
+cacheSolve <- function(x,...) {
+        m <- x$getcache()
         if(!is.null(m)) {
                 message("getting cached data")
                 return(m)
         }
-        data <- i$get()
+        data <- x$get()
         m <- solve(data)
-        x$setmean(m)
+        x$setcache(m)
         m
 }

@@ -1,20 +1,28 @@
-##Create CacheMartix
-cachemean <- function(x, ...) {
-  y <- x$getmean()
-  if(!is.null(y)) {
-    message("getting cached data")
-    return(m)
-  }
-  data <- x$get()
-  y <- mean(data, ...)
-  x$setmean(y)
-  y
+##Create MakeCacheMartix
+makeCacheMatrix<- function(i = numeric()) {
+        m <- NULL
+        set <- function(y) {
+                i <<- y
+                m <<- NULL
+        }
+        get <- function() i
+        setmean <- function(mean) m <<- mean
+        getmean <- function() m
+        list(set = set, get = get,
+             setmean = setmean,
+             getmean = getmean)
 }
-##Return Inverse Result
-solve(y)
 
 
-## Create square Matrix equal 
-x= matrix( c(1,2,3,4), nrow=2 ) *2 
-## Execute and return the inverse result
-solve(x) 
+## CacheSolve
+cacheSolve <- function(i, ...) {
+        m <- x$getmean()
+        if(!is.null(m)) {
+                message("getting cached data")
+                return(m)
+        }
+        data <- i$get()
+        m <- solve(data)
+        x$setmean(m)
+        m
+}
